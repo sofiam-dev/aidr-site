@@ -918,7 +918,11 @@
                         </div>
                     </div>
 
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/vladimir@ayeps.com" method="POST">
+                        <input type="hidden" name="_subject" value="New AIDR Lead">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://sofiam-dev.github.io/aidr-site/?success=true">
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" name="name" placeholder="John Smith" required>
@@ -992,12 +996,11 @@
             });
         });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Show success message if redirected back
+        if (window.location.search.includes('success=true')) {
             alert('Thank you! We will contact you shortly.');
-            this.reset();
-        });
+            window.history.replaceState({}, '', window.location.pathname);
+        }
 
         // Header scroll effect
         window.addEventListener('scroll', () => {
